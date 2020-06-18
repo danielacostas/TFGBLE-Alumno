@@ -49,7 +49,6 @@ public class BeaconActivity extends AppCompatActivity {
 
     Toolbar toolbar;
 
-
     private ArrayList<String> assistantList = new ArrayList<>();
 
 
@@ -102,9 +101,7 @@ public class BeaconActivity extends AppCompatActivity {
             showToastMessage("Introduce tu nombre completo");
             return;
         }
-        String bluetooth = getBluetoothMacAddress();
-        Log.e(TAG, bluetooth);
-        showToastMessage(bluetooth);
+
         final String studentMac = getMacAddr();
         Log.e(TAG, studentMac);
         if (studentMac == "00:00:00:00:00:00"){
@@ -148,33 +145,6 @@ public class BeaconActivity extends AppCompatActivity {
                 });
     }
 
-    public String getBluetoothMacAddress() {
-        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        String bluetoothMacAddress = "";
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M){
-            try {
-                Field mServiceField = bluetoothAdapter.getClass().getDeclaredField("mService");
-                mServiceField.setAccessible(true);
-
-                Object btManagerService = mServiceField.get(bluetoothAdapter);
-
-                if (btManagerService != null) {
-                    bluetoothMacAddress = (String) btManagerService.getClass().getMethod("getAddress").invoke(btManagerService);
-                }
-            } catch (NoSuchFieldException e) {
-
-            } catch (NoSuchMethodException e) {
-
-            } catch (IllegalAccessException e) {
-
-            } catch (InvocationTargetException e) {
-
-            }
-        } else {
-            bluetoothMacAddress = bluetoothAdapter.getAddress();
-        }
-        return bluetoothMacAddress;
-    }
 
     private void update(final String studentName, String docId) {
 

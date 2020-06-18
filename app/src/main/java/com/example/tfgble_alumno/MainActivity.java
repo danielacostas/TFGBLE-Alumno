@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView beaconTextView;
     Toolbar toolbar;
 
-    public static final String SECURE_SETTINGS_BLUETOOTH_ADDRESS = "bluetooth_address";
     private static final int PERMISSION_REQUEST_FINE_LOCATION = 1;
     private static final int PERMISSION_REQUEST_BACKGROUND_LOCATION = 2;
 
@@ -304,24 +303,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         beaconsId.clear();
 
-/*        for (Beacon beacon : beacons) {
-            beaconsId.add(beacon.getId2().toString());
-            DocumentReference mDocRef = FirebaseFirestore.getInstance().document("/Beacons/" + beacon.getId2().toString());
-            mDocRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    if (documentSnapshot.exists()) {
-                        String nombreClase = documentSnapshot.getString("Asignatura");
-                        if (asigName.contains(nombreClase)) {
-                            return;
-                        } else {
-                            asigName.add(nombreClase);
-                        }
-                    }
-                }
-            });
-        }*/
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         for (Beacon beacon : beacons) {
@@ -517,12 +498,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toast.show();
     }
 
-    private void showToastMessage2 (String message) {
-        Toast toast = Toast.makeText(this, message, Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.BOTTOM, 0, 0);
-        toast.show();
-    }
-
     public static String getMacAddr() {
         try {
             List<NetworkInterface> all = Collections.list(NetworkInterface.getNetworkInterfaces());
@@ -548,34 +523,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //handle exception
         }
         return "";
-    }
-
-    private String getBluetoothMacAddress() {
-        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        String bluetoothMacAddress = "";
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M){
-            try {
-                Field mServiceField = bluetoothAdapter.getClass().getDeclaredField("mService");
-                mServiceField.setAccessible(true);
-
-                Object btManagerService = mServiceField.get(bluetoothAdapter);
-
-                if (btManagerService != null) {
-                    bluetoothMacAddress = (String) btManagerService.getClass().getMethod("getAddress").invoke(btManagerService);
-                }
-            } catch (NoSuchFieldException e) {
-
-            } catch (NoSuchMethodException e) {
-
-            } catch (IllegalAccessException e) {
-
-            } catch (InvocationTargetException e) {
-
-            }
-        } else {
-            bluetoothMacAddress = bluetoothAdapter.getAddress();
-        }
-        return bluetoothMacAddress;
     }
 
     @Override
