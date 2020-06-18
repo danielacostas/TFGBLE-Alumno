@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "194359573169",
+    "firebase_url": "https://tfg-daniel-acosta.firebaseio.com",
+    "project_id": "tfg-daniel-acosta",
+    "storage_bucket": "tfg-daniel-acosta.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:194359573169:android:4d6f2b5d0381c385558090",
+        "android_client_info": {
+          "package_name": "com.example.tfgble_alumno"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "194359573169-t2h85leg70cchkhvdtth0u6lj25rhsfl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCn4hK0uJp0Nnx6JxvibLcpLQYo-7G3Wg0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "194359573169-t2h85leg70cchkhvdtth0u6lj25rhsfl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
